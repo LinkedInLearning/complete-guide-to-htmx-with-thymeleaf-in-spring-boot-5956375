@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="emails-info(emails, personId)" id="email-parent">
+    <div id="email-alert-message">
+        <br>
+        <div th:if="${alertMessage}"
+             class="alert"
+             th:classappend="${alertLevel != null ? ' alert-' + alertLevel  + ' alert-dismissible fade show': ''}"
+             role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <span th:text="${alertMessage}"></span>
+        </div>
+    </div>
+    <div class="card p-3 bg-dark text-white mt-4" id="email-list">
+        <div class="card-body position-relative">
+            <h4 class="card-title">Email Addresses</h4>
+
+            <!-- Button to Add a New Email -->
+            <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-outline-light btn-sm"
+                        id="add-email-button"
+                        th:hx-get="@{/person/{personId}/email/add(personId=${personId})}"
+                        hx-target="#email-list"
+                        hx-swap="innerHTML transition:true show:#email-parent:bottom">
+                    <i class="fa-solid fa-plus"></i> Add Email
+                </button>
+            </div>
+
+            <!-- List of Existing Emails -->
+            <div class="row d-flex flex-wrap" id="email-list-container">
+                <div th:each="email : ${emails}"
+                     th:insert="~{person/email-item :: email-item(email=${email}, personId=${personId})}">
+                </div>
+            </div>
+
+            <!-- Form for Adding/Editing an Email -->
+            <div id="email-form-container" class="mt-3">
+                <div id="email-form" class="mt-3">
+                    <!-- This section will be dynamically replaced by the form when editing or adding -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

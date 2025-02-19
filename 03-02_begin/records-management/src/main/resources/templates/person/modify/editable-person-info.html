@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="editable-person-info(person)">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body">
+            <h4 class="card-title">Edit Personal Information</h4>
+
+            <form th:action="@{/person/update/{personId}(personId=${person.personId})}" th:object="${person}"
+                  method="post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="prefix" class="form-label">Prefix</label>
+                                <input type="text" th:field="*{prefix}" class="form-control bg-dark text-white"
+                                       id="prefix">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" th:field="*{firstName}" class="form-control bg-dark text-white"
+                                       id="firstName">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" th:field="*{lastName}" class="form-control bg-dark text-white"
+                                       id="lastName">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="middleName" class="form-label">Middle Name</label>
+                                <input type="text" th:field="*{middleName}" class="form-control bg-dark text-white"
+                                       id="middleName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="suffix" class="form-label">Suffix</label>
+                                <input type="text" th:field="*{suffix}" class="form-control bg-dark text-white"
+                                       id="suffix">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="personType" class="form-label">Person Type</label>
+                                <select th:field="*{personType}" class="form-control bg-dark text-white"
+                                        id="personType">
+                                    <option value="FATHER">Father</option>
+                                    <option value="MOTHER">Mother</option>
+                                    <option value="LEGAL_GUARDIAN">Legal Guardian</option>
+                                    <!-- Add other types as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <label for="legalGuardianType" class="form-label">Legal Guardian (Use If Person Type is Other)</label>
+                                <select th:field="*{legalGuardianType}" class="form-control bg-dark text-white"
+                                        id="legalGuardianType">
+                                    <option value=""></option>
+                                    <option value="UNCLE">Uncle</option>
+                                    <option value="AUNT">Aunt</option>
+                                    <option value="BROTHER">Brother</option>
+                                    <option value="SISTER">Sister</option>
+                                    <option value="GRANDMOTHER">Grandmother</option>
+                                    <option value="GRANDFATHER">Grandfather</option>
+                                    <option value="OTHER">Other</option>
+                                    <!-- Add other types as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="employmentStatus" class="form-label">Employment Status</label>
+                                <select id="employmentStatus" th:field="*{employmentStatus}" class="form-select">
+                                    <option value="EMPLOYED">Employed</option>
+                                    <option value="SELF_EMPLOYED">Self-Employed</option>
+                                    <option value="UNEMPLOYED">Unemployed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a th:href="@{/person/view/{personId}(personId=${person.personId})}" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>

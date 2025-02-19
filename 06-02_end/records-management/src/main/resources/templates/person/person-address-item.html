@@ -1,0 +1,42 @@
+<html lang="" xmlns:th="http://www.thymeleaf.org">
+<div class="col-md-5"
+     th:fragment="address-item(addressDto, personId)"
+     th:id="${'person-address-parent-' + addressDto.addressId}">
+  <div class="col-md">
+    <div class="mb-3 border rounded p-3">
+      <strong>Type:</strong> <span th:text="${addressDto.addressType}"></span>
+      <br><strong>Address Line 1:</strong> <span th:text="${addressDto.address1}"></span>
+      <br><strong>Address Line 2:</strong> <span th:text="${addressDto.address2}"></span>
+      <br><strong>City:</strong> <span th:text="${addressDto.city}"></span> &nbsp; &nbsp;
+      <strong>State:</strong> <span th:text="${addressDto.state}"></span>
+      <br><strong>ZIP:</strong> <span th:text="${addressDto.zip}"></span> &nbsp; &nbsp;
+      <strong>Country Code:</strong> <span th:text="${addressDto.countryCd}"></span>
+      <br><!-- Edit and Delete buttons for each address -->
+      <div class="mt-2">
+        <a class="btn btn-sm btn-outline-light"
+           data-bs-toggle="modal" data-bs-target="#addressModal"
+           hx-swap="innerHTML"
+           hx-target="#addressModalContent"
+           th:hx-get="@{/person/{personId}/person-address/edit/{addressId}(personId=${personId}, addressId=${addressDto.addressId})}">
+          <i class="fa-solid fa-pencil"></i> Edit
+        </a>
+        <a class="btn btn-sm btn-outline-danger"
+           href="#" hx-swap="outerHTML"
+           hx-target="closest .col-md-4"
+           th:hx-delete="@{/person/{personId}/person-address/delete/{addressId}(personId=${personId}, addressId=${addressDto.addressId})}">
+          <i class="fa-solid fa-trash"></i> Delete
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Alert Message Placeholder -->
+  <div id="address-alert-message" th:if="${afterSave}">
+    <br>
+    <div class="alert" role="alert"
+         th:classappend="${alertLevel != null ? ' alert-' + alertLevel  + ' alert-dismissible fade show': ''}"
+         th:if="${alertMessage}">
+      <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button><span th:utext="${alertMessage}"></span>
+    </div>
+  </div>
+</div>
+</html>

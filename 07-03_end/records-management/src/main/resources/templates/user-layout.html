@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Records Management - User Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/sweetalert2/11.15.10/dist/sweetalert2.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+</head>
+<body class="gradient-custom" hx-boost="true">
+<header th:insert="~{fragments/header :: userHeader}"></header> <!-- User-specific header -->
+
+<div class="container" id="content">
+    <br>
+    <div th:insert="~{fragments/messages :: messages}"></div>
+    <div layout:fragment="content"></div> <!-- Content will be injected here -->
+</div>
+<!-- Modal to host the Add/Edit form -->
+<th:block th:insert="~{modal-dialogs/bs-dialogs :: bs-dialogs}"></th:block>
+<footer th:insert="~{fragments/footer :: userFooter}"></footer>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    window.csrfConfig = {
+        headerName: /*[[${_csrf.headerName}]]*/,
+        token: /*[[${_csrf.token}]]*/
+    };
+    /*]]>*/
+</script>
+<script th:src="@{/webjars/sortablejs/1.15.6/Sortable.min.js}"></script>
+<script th:src="@{/webjars/sweetalert2/11.15.10/dist/sweetalert2.all.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/webjars/htmx.org/2.0.4/dist/htmx.js}" type="text/javascript"></script>
+<script th:src="@{/webjars/htmx.org/2.0.4/dist/ext/ws.js}" defer></script>
+<script th:src="@{/js/scripts.js}" type="text/javascript"></script>
+<script th:src="@{/js/csrf-ext.js}" type="text/javascript" defer></script>
+</body>
+</html>

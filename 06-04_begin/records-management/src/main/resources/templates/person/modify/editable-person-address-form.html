@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<div th:fragment="address-form(addressDto, personId)">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Person Address Form</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body bg-light text-dark">
+    <form method="post" th:action="@{/person/{personId}/person-address/save(personId=${personId})}"
+          th:object="${addressDto}">
+      <!-- Hidden input for addressId to ensure it's passed when editing -->
+      <input th:field="*{addressId}" type="hidden">
+      <div class="mb-3">
+        <label class="form-label" for="addressType">Address Type</label>
+        <select class="form-select"
+                id="addressType"
+                th:field="*{addressType}">
+          <option value="">Please Pick One</option>
+          <option value="MAILING">Mailing</option>
+          <option value="PHYSICAL">Physical</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="address1">Address Line 1</label>
+        <input class="form-control" id="address1"
+               required th:field="*{address1}"
+               type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="address2">Address Line 2</label>
+        <input class="form-control" id="address2"
+               th:field="*{address2}" type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="city">City</label>
+        <input class="form-control" id="city" required
+               th:field="*{city}" type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="state">State</label>
+        <input class="form-control" id="state" required
+               th:field="*{state}" type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="zip">ZIP</label>
+        <input class="form-control" id="zip" required
+               th:field="*{zip}" type="text">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="countryCd">Country Code</label>
+        <input class="form-control" id="countryCd"
+               required th:field="*{countryCd}"
+               type="text">
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-success me-2" data-bs-dismiss="modal"
+                hx-swap="beforeend "
+                hx-target="#person-address-list-container"
+                th:hx-post="@{/person/{personId}/person-address/save(personId=${personId})}"
+                hx-select-oob="#address-alert-message:outerHTML"
+                th:if="${newAddress}" type="submit">
+          Save
+        </button>
+        <button class="btn btn-success me-2" data-bs-dismiss="modal"
+                hx-swap="outerHTML"
+                th:hx-target="${'#person-address-parent-' + addressDto.addressId}"
+                th:hx-post="@{/person/{personId}/person-address/save(personId=${personId})}"
+                hx-select-oob="#address-alert-message:outerHTML"
+                th:if="${!newAddress}" type="submit">
+          Update
+        </button>
+        <button class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                type="button">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+</html>

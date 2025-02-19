@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Records Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+</head>
+<body class="gradient-custom">
+<header th:insert="~{fragments/header :: publicHeader}"></header> <!-- Public header -->
+
+<div class="container">
+    <div th:insert="~{fragments/messages :: messages}"></div>
+    <div layout:fragment="content"></div> <!-- Content injected here for welcome page -->
+</div>
+
+<footer class="welcome-footer" th:insert="~{fragments/footer :: publicFooter}"></footer> <!-- Public footer -->
+
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/htmx.org/2.0.3/dist/htmx.min.js}"></script>
+</body>
+</html>

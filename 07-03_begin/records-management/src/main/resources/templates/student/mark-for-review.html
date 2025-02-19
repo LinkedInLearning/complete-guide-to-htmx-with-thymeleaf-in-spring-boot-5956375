@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:hx="http://www.w3.org/1999/xhtml" lang="en">
+<div th:fragment="mark-for-review-info(missingDetailsList, student)" id="mark-for-review"
+     hx:get="@{/student/checkForReview/{studentId}(studentId=${student.studentId})}"
+     hx-trigger="triggerMarkForReview from:body"
+     hx-target="#mark-for-review"
+     hx-swap="innerHTML transition:true"
+     hx-swap-oob="outerHTML:#mark-for-review">
+  <div class="card bg-warning text-dark mt-4">
+    <div class="card-body">
+      <h4 class="card-title">Review Required</h4>
+      <ul class="list-group">
+        <li th:each="detail : ${missingDetailsList}" class="list-group-item">
+          <i class="fa-solid fa-exclamation-circle"></i>
+          <span th:text="${detail}"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</html>

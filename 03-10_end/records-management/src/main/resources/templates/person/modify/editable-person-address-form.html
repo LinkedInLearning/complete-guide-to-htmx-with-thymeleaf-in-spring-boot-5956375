@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="address-form(address, personId)">
+  <form th:action="@{/person/{personId}/person-address/save(personId=${personId})}" th:object="${address}" method="post">
+    <!-- Hidden input for addressId to ensure it's passed when editing -->
+    <input type="hidden" th:field="*{addressId}" />
+
+    <div class="mb-3">
+      <label for="addressType" class="form-label">Address Type</label>
+      <select id="addressType" th:field="*{addressType}" class="form-select">
+        <option value="">Please Pick One</option>
+        <option value="MAILING">Mailing</option>
+        <option value="PHYSICAL">Physical</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="address1" class="form-label">Address Line 1</label>
+      <input id="address1" type="text" th:field="*{address1}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="address2" class="form-label">Address Line 2</label>
+      <input id="address2" type="text" th:field="*{address2}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input id="city" type="text" th:field="*{city}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <input id="state" type="text" th:field="*{state}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="zip" class="form-label">ZIP</label>
+      <input id="zip" type="text" th:field="*{zip}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="countryCd" class="form-label">Country Code</label>
+      <input id="countryCd" type="text" th:field="*{countryCd}" class="form-control" required>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success me-2">Save</button>
+      <button type="button" class="btn btn-secondary"
+              th:hx-get="@{/person/view/{personId}(personId=${personId})}"
+              hx-target="body" hx-swap="outerHTML">Cancel</button>
+    </div>
+  </form>
+</div>
+</html>

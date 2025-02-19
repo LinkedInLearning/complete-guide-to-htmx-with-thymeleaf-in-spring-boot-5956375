@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="personal-info">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body">
+            <h4 class="card-title">Personal Information</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-dark text-white">
+                    <strong>First Name:</strong> <span th:text="${user.person.firstName}">John</span>
+                </li>
+                <li class="list-group-item bg-dark text-white">
+                    <strong>Last Name:</strong> <span th:text="${user.person.lastName}">Doe</span>
+                </li>
+                <li class="list-group-item bg-dark text-white">
+                    <strong>Prefix:</strong> <span th:text="${user.person.prefix}">Mr.</span>
+                </li>
+                <li class="list-group-item bg-dark text-white">
+                    <strong>Middle Name:</strong> <span th:text="${user.person.middleName}">William</span>
+                </li>
+                <li class="list-group-item bg-dark text-white">
+                    <strong>Suffix:</strong> <span th:text="${user.person.suffix}">Jr.</span>
+                </li>
+                <li class="list-group-item bg-dark text-white">
+                    <strong>Person Type:</strong> <span th:text="${user.person.personType}">Father</span>
+                </li>
+                <li class="list-group-item bg-dark text-white" th:if="${user.person.personType == 'LEGAL_GUARDIAN'}">
+                    <strong>Legal Guardian Type:</strong> <span th:text="${user.person.legalGuardianType}">Uncle</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</html>

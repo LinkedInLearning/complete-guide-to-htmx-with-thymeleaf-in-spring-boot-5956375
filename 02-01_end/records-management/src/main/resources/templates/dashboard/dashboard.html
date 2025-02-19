@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{user-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h2 class="text-white text-uppercase">Dashboard</h2>
+
+        <!-- Display Success or Error Messages -->
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <span th:text="${message}"></span>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <!-- User Info Section -->
+        <div id="user-info">
+            <div th:if="${#strings.equals(mode, 'edit-username')}">
+                <div th:replace="~{dashboard/modify/user-info-edit :: user-info-edit}"></div>
+            </div>
+            <div th:if="${#strings.equals(mode, 'edit-password')}">
+                <div th:replace="~{dashboard/modify/user-info-edit :: user-info-edit}"></div>
+            </div>
+            <div th:if="${mode != 'edit-username' and mode != 'edit-password'}">
+                <div th:replace="~{dashboard/user-info :: user-info}"></div>
+            </div>
+        </div>
+
+        <!-- Other Dashboard Sections -->
+        <div th:insert="~{dashboard/person-info :: personal-info}"></div>
+        <div th:insert="~{dashboard/students :: students}"></div>
+    </div>
+</div>
+</body>
+</html>

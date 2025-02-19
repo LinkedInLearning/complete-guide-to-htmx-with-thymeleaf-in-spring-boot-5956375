@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="personal-info(person)">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body position-relative ">
+            <h4 class="card-title">Personal Information</h4>
+
+            <!-- Edit Link with Pencil Icon and Badge -->
+            <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-outline-light btn-sm position-relative"
+                        th:hx-get="@{/person/edit/{personId}(personId=${person.personId})}"
+                        hx-target="#person-info-content"
+                        hx-swap="innerHTML transition:true show:.container:top">
+                    <i class="fa-solid fa-pencil"></i> Edit
+                </button>
+
+            </div>
+
+            <!-- Personal Info Data -->
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Prefix:</strong>
+                        <div th:text="${person.prefix}">Mr.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>First Name:</strong>
+                        <div th:text="${person.firstName}">John</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Middle Name:</strong>
+                        <div th:text="${person.middleName}">William</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Last Name:</strong>
+                        <div th:text="${person.lastName}">Doe</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Suffix:</strong>
+                        <div th:text="${person.suffix}">Jr.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Person Type:</strong>
+                        <div th:text="${person.personType}">Father</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Legal Guardian Type:</strong>
+                        <div th:text="${person.legalGuardianType}">Uncle</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Employment Status:</strong>
+                        <div th:text="${person.employmentStatus != null ? #strings.capitalize(person.employmentStatus.name().toLowerCase().replace('_', ' ')) : 'Not Specified'}">
+                            Employed / Unemployed / Self-Employed
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

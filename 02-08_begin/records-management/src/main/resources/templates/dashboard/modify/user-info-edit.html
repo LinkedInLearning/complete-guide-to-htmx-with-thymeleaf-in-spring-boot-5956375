@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User Information</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <!-- Optional: your CSS file -->
+</head>
+<body>
+<!-- templates/dashboard/modify/user-info-edit.html -->
+<div th:fragment="user-info-edit">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body" id="user-edit-content">
+            <h4 class="card-title" th:text="${mode == 'edit-username' ? 'User Information - Edit Username' : 'User Information - Update Password'}">Edit User Information</h4>
+
+            <form method="post" th:action="@{${mode == 'edit-username' ? '/user-info/update-username' : '/user-info/update-password'}}">
+                <input type="hidden" id="userId" name="userId" th:value="${user.userId}">
+                <input type="hidden" id="enabled" name="enabled" th:value="${user.enabled}">
+
+                <!-- Conditionally render the username or password fields based on the mode -->
+                <div th:if="${mode == 'edit-username'}">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input class="form-control" id="email" name="email"
+                               th:hx-get="@{/user-info/username-exist}" hx-target="#username-availability"
+                               hx-trigger="keyup changed delay:500ms" required th:value="${user.email}" type="email">
+                    </div>
+                    <!-- Display the username availability message here -->
+                    <div id="username-availability" class="text-danger mt-2"></div>
+                </div>
+
+                <!-- The password section remains the same as before -->
+                <div th:if="${mode == 'edit-password'}">
+                    <div class="form-group">
+                        <label for="userEmail">Email Address</label>
+                        <input class="form-control" id="userEmail" name="email" style="background-color: silver;" readonly th:value="${user.email}" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">New Password</label>
+                        <input class="form-control" id="password" name="password" required type="password">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input class="form-control" id="confirmPassword" name="confirmPassword" required type="password">
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                    <a class="btn btn-secondary" th:hx-get="@{/user-info/view}"
+                       hx-target="#user-info" th:href="@{/dashboard}">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

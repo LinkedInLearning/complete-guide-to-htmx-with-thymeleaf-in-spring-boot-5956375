@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="email-item(email, personId)" class="email-item col-md-12 mb-3">
+    <div class="border rounded p-2 position-relative">
+        <strong th:text="${email.type}">Type:</strong>
+        <div th:text="${email.emailAddress}">email@example.com</div>
+
+        <!-- Edit and Delete links for each email -->
+        <div class="position-absolute top-0 end-0 m-2 ">
+            <a href="#" class="text-light me-2 edit-delete-icons"
+               th:hx-get="@{/person/{personId}/email/edit/{emailId}(personId=${personId}, emailId=${email.emailId})}"
+               hx-target="#email-list"
+               hx-swap="innerHTML">
+                <i class="fa-solid fa-pencil" title="Edit"></i>
+            </a>
+            <a href="#" class="text-danger edit-delete-icons"
+               th:hx-delete="@{/person/{personId}/email/delete/{emailId}(personId=${personId}, emailId=${email.emailId})}"
+               hx-target="closest .col-md-4"
+               hx-swap="outerHTML"
+               hx-headers="{'X-CSRF-TOKEN': '${_csrf.token}'}">
+                <i class="fa-solid fa-trash" title="Delete"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</html>

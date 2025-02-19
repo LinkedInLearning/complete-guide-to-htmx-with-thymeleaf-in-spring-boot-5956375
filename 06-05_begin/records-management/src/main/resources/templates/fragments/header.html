@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<!-- Public Header Fragment -->
+<div th:fragment="publicHeader">
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white-50 mt-2 mt-lg-0" href="#">
+                <img alt="Records Management Icon" height="65"
+                     loading="lazy"
+                     th:src="@{/img/records_management_icon.png}" src="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"><i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <h2 class="fw-bold mb-2 text-white text-uppercase">Records Management</h2>
+                    </li>
+                </ul>
+                <!-- Logout button to the far right -->
+                <ul class="navbar-nav ms-auto">
+                    <li sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+                        <form th:action="@{/logout}" method="post" class="d-flex">
+                            <button type="submit" class="btn btn-link text-white">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- User Header Fragment -->
+<div th:fragment="userHeader">
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white-50 mt-2 mt-lg-0" href="#">
+                <img alt="Records Management Icon"
+                     height="65" loading="lazy" src="#"
+                     th:src="@{/img/records_management_icon.png}">
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <h2 class="fw-bold mb-2 text-white text-uppercase">Records Management</h2>
+                    </li>
+                    <!-- Public Links -->
+                    <li>
+                        <a class="nav-link text-white-50"
+                           th:href="@{/dashboard}"
+                           th:hx-get="@{/dashboard}"
+                           hx-target="body"
+                           hx-swap="innerHTML transition:true">
+                            <i class="fa-solid fa-house"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li th:if="${#authorization.expression('isAnonymous()')}">
+                        <a class="nav-link text-white-50"
+                           th:href="@{/login}">
+                            Login
+                        </a>
+                    </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link text-white-50"
+                           hx-swap="outerHTML transition:true"
+                           hx-target="body"
+                           th:href="@{/admin/dashboard}"
+                           th:hx-get="@{/admin/dashboard}">
+                            <i class="fa-solid fa-lock"></i>
+                            Admin View
+                        </a>
+                    </li>
+                    <li sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                        <a class="nav-link text-white-50" href="#">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Add Person
+                        </a>
+                    </li>
+                    <li sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                        <a class="nav-link text-white-50" href="#">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            Add Student
+                        </a>
+                    </li>
+                </ul><!-- Logout button to the far right -->
+                <ul class="navbar-nav ms-auto">
+                    <li sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                        <form class="d-flex" method="post" th:action="@{/logout}">
+                            <button class="btn btn-link text-white" type="submit"><i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+</html>

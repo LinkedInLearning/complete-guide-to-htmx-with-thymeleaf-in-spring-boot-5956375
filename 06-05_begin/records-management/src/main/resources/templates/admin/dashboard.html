@@ -1,0 +1,42 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{admin-layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+    <h2 class="text-white text-uppercase">Admin Dashboard - List of Persons</h2>
+
+    <!-- admin-dashboard.html -->
+
+    <!-- Header row with dark background + white text -->
+    <div class="row p-2 fw-bold bg-dark text-white">
+        <div class="col-2">Person ID</div>
+        <div class="col-3">Full Name</div>
+        <div class="col-3">Email</div>
+        <div class="col-4">Actions</div>
+    </div>
+
+    <!-- Data rows: light background + dark text -->
+    <div class="row align-items-center p-2 bg-light text-dark"
+         th:each="person : ${persons}">
+
+        <div class="col-2" th:text="${person.personId}"></div>
+        <div class="col-3" th:text="${person.firstName} + ' ' + ${person.lastName}"></div>
+        <div class="col-3" th:text="${person.emailDto.emailAddress}"></div>
+        <div class="col-4">
+            <a class="btn btn-outline-primary btn-sm"
+               th:href="@{/person/view/{id}(id=${person.personId})}">
+                View
+            </a>
+            <button class="btn btn-outline-danger btn-sm"
+                    th:onclick="'deletePerson(' + ${person.personId} + ')'">
+                Delete
+            </button>
+        </div>
+    </div>
+
+
+</div>
+</html>

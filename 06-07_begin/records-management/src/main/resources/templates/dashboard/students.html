@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+
+<div th:fragment="students" id="student-content">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body">
+            <h4 class="card-title">Students</h4>
+            <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-outline-light btn-sm position-relative"
+                        th:hx-get="@{/student/add/{personId}/personId(personId=${personId})}"
+                        hx-target="#student-content"
+                        hx-swap="innerHTML transition:true show:#student-content:top swap:.15s">
+                    <i class="fa-solid fa-plus"></i> Add Student
+                </button>
+            </div>
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Middle Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${studentDtos}">
+                    <td th:text="${student.firstName}">First Name</td>
+                    <td th:text="${student.middleName}">First Name</td>
+                    <td th:text="${student.lastName}">Last Name</td>
+                    <td th:text="${student.sex}">Sex</td>
+                    <td th:text="${student.age}">Age</td>
+                    <td th:text="${student.gradeLevel}">Grade</td>
+                    <td>
+                        <!-- Edit Button -->
+                        <button class="btn btn-outline-light btn-sm position-relative"
+                                th:hx-get="@{/student/view/{studentId}(studentId=${student.studentId})}"
+                                hx-target="body"
+                                hx-swap="innerHTML transition:true">
+                            <i class="fa-solid fa-eye"></i> View Student
+                            <span class="badge position-absolute top-0 start-100 translate-middle rounded-pill"
+                                  th:classappend="${student.missingDetailsDto.missingCount == 0} ? ' bg-success' : ' bg-danger'"
+                                  th:text="${student.missingDetailsDto.missingCount}"
+                                  data-bs-toggle="tooltip"
+                                  style="transform: translate(-50%, -50%);">0</span>
+
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Placeholder for the Edit Form -->
+<div id="student-form"></div>
+
+</html>

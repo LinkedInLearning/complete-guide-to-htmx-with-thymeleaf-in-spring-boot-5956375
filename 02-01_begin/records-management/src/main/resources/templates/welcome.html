@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html  lang="en"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
+       layout:decorate="~{welcome-layout}">
+<head>
+  <title>Welcome</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container mt-5">
+    <h1>Welcome to Records Management</h1>
+    <p>This is a public-facing welcome page.</p>
+    <a th:href="@{/login}" class="btn btn-primary">Login</a>
+  </div>
+</div>
+</body>
+</html>

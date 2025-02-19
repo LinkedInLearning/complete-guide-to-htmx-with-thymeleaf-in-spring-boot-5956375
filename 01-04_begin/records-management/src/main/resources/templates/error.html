@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Error Page</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+  <div class="error-template">
+    <h1>Oops!</h1>
+    <h2>An error occurred</h2>
+    <div class="error-details">
+      <p th:text="${errorMessage != null ? errorMessage : 'Something went wrong, please try again later.'}">
+        Something went wrong, please try again later.
+      </p>
+    </div>
+    <div class="error-actions">
+      <a th:href="@{/}" class="btn btn-primary">
+        <i class="fa fa-home"></i> Go to Homepage
+      </a>
+      <a th:href="@{/contact}" class="btn btn-secondary">
+        <i class="fa fa-envelope"></i> Contact Support
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

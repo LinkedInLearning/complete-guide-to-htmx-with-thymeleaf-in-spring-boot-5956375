@@ -1,0 +1,432 @@
+body {
+    padding-top: 80px; /* Adjust based on the height of your navbar */
+}
+.error {
+    text-align:center;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+}
+header {
+    z-index: 1000;
+}
+.outer-fade {
+    opacity: 0;
+    animation: outerFadeIn 1.5s ease-in forwards;
+}
+
+@keyframes outerFadeIn { to { opacity: 1; } }
+
+.loading-dashboard-elem {
+    opacity: 0;
+    animation: loadingFadeIn 0.3s ease-in forwards;
+    border: 2px #212529 solid; background: #212529;
+    border-radius: 5px;
+    height: 100px; margin-top: 20px; padding: 10px;
+    color: white; font-size: 24px;
+    visibility: visible;
+}
+
+@keyframes loadingFadeIn { to { opacity: 1; } }
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+}
+
+nav.navbar {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.dropdown-menu {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* adjust the margin-top value as needed */
+}
+
+.dropdown-menu a {
+    color: #fff !important; /* ensures the links are visible */
+}
+
+.dropdown-menu a:hover {
+    background-color: #6a11cb !important; /* hover background color for the links */
+    color: #fff !important; /* hover text color for the links */
+}
+
+a.text-white-50 {
+    text-decoration: none;
+}
+a.text-white-50:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+.navbar .btn-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar .btn-link:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+li a.nav-link {
+    text-decoration: none;
+    color: #fff;
+}
+li a.nav-link:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+.welcome-footer {
+   background-color: #343a40 !important; /* Dark gray background */
+   color: #d3d3d3 !important; /* Light gray text */
+   padding: 40px 0 !important; /* Add padding to the footer (top and bottom) */
+   margin-top: 30px; /* Add margin between the main content and the footer */
+   position: absolute;
+   width:100%;
+   bottom: 1px;
+   left: 0;
+}
+.footer {
+    background-color: #343a40 !important; /* Dark gray background */
+    color: #d3d3d3 !important; /* Light gray text */
+    padding: 40px 0 !important; /* Add padding to the footer (top and bottom) */
+    margin-top: 30px; /* Add margin between the main content and the footer */
+
+}
+
+.footer h5 {
+    color: #ffffff; /* White heading text */
+    margin-bottom: 15px;
+}
+
+.footer a {
+    color: #d3d3d3 !important; /* Light gray for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.footer a:hover {
+    color: #ffffff !important; /* White on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.footer p {
+    margin: 0; /* Ensure no margins on paragraphs */
+}
+
+.footer .container {
+    max-width: 1140px; /* Set a max width for the footer container */
+}
+
+.footer .row {
+    margin-bottom: 20px; /* Add spacing between rows */
+}
+
+.footer .text-center {
+    color: #d3d3d3 !important;
+    margin-top: 10px;
+}
+
+.footer .list-unstyled {
+    padding-left: 0;
+}
+
+.footer .list-unstyled li {
+    margin-bottom: 10px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+}
+
+@keyframes fade-out {
+    to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+    from { transform: translateX(90px); }
+}
+
+@keyframes slide-to-left {
+    to { transform: translateX(-90px); }
+}
+
+/* Keyframes for color transition */
+@keyframes color-fade-out {
+    0%     {background-color:#ffffff;}
+    50.0%  {background-color:#ff9999;}
+    100.0%  {background-color:#2e2d2d;}
+}
+
+@keyframes color-fade-in {
+    0%     {background-color:#ffffff;}
+    50.0%  {background-color:#ff9999;}
+    100.0%  {background-color:#2e2d2d;}
+}
+
+@view-transition {
+    navigation: auto;
+}
+.slide-it {
+    view-transition-name: slide-it;
+}
+
+::view-transition-old(slide-it) {
+    animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+::view-transition-new(slide-it) {
+    animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+    600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+[class*="slide-individual"] {
+    view-transition-name: slide-individual;
+}
+
+::view-transition-old(slide-individual) {
+  animation: color-fade-out 1000ms both, slide-to-left 600ms both;
+}
+
+::view-transition-new(slide-individual) {
+  animation: color-fade-in 1000ms both, slide-from-right 600ms both;
+}
+
+.bg-custom-dark{
+    background-color: rgb(70 72 75) !important;
+}
+a.edit-delete-icons:hover {
+    color: rgba(150,178,255, 1) !important;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+.wrapper-prior-schools-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* Ensures equal column width */
+    color: white;
+    max-width: 100%; /* Makes it flexible for smaller screens */
+    margin: 0 auto; /* Centers the grid layout */
+    background-color: #2e2d2d; /* Matches the card background for consistency */
+    border-radius: 5px; /* Slight rounding for aesthetics */
+}
+.header {
+    font-weight: 600;
+}
+.body {
+    font-weight: 200;
+    text-align: left;
+}
+
+.body:hover .box {
+    background-color: #454545; /* Highlight all cells in the row on hover */
+}
+
+.box {
+    color: white;
+    font-size: 90%; /* Slightly larger for readability */
+    text-align: center; /* Centers text in each grid cell */
+    padding: 5px; /* Adds some padding to the content */
+    border-bottom: 1px solid #4d5154; /* Light border for visual separation */
+    background-color: #212528;
+}
+
+.button-group {
+    display: flex; /* Aligns buttons horizontally */
+    justify-content: center; /* Centers buttons within the action cell */
+    gap: 5px; /* Adds spacing between buttons */
+}
+
+@media (max-width: 768px) {
+    .wrapper-prior-schools-grid {
+        grid-template-columns: 1fr; /* Stacks all columns */
+    }
+}
+
+.fade-out-display-none {
+    animation: fadeOutAndHide 2s forwards; /* Animation duration: 2 seconds */
+}
+
+/* Define the keyframes for the fade-out and display-none effect */
+@keyframes fadeOutAndHide {
+    0% {
+        opacity: 1; /* Fully visible */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        display: none; /* Hide the element */
+    }
+}
+
+.fade-out-implosion {
+    animation: fadeOutImplosion 2s forwards; /* Animation duration: 2 seconds */
+}
+
+@keyframes fadeOutImplosion {
+    0% {
+        opacity: 1; /* Fully visible */
+        transform: scale(1); /* Normal size */
+    }
+    50% {
+        opacity: 0.5; /* Start fading out */
+        transform: scale(0.8); /* Shrinking slightly */
+    }
+    100% {
+        opacity: 0; /* Fully transparent */
+        transform: scale(0); /* Completely shrunk */
+        display: none; /* Element disappears */
+    }
+}
+
+.modal-backdrop:nth-child(2n-1) {
+    display: none !important;
+}
+
+.spinner {
+    display: none;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.htmx-request {
+    display:block;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height:300px !important;
+  gap: 10px;
+}
+
+/* Messages from the current user (self) align right */
+.self {
+  align-self: flex-start;
+  margin: 2px;
+  padding: 1px;
+  background-color: #258bf5;
+  color:white;
+  border-radius: 5px;
+  border: 1px solid silver;
+}
+
+/* Messages from other users align left */
+.other {
+  align-self: flex-end;
+  margin: 2px;
+  padding: 1px;
+  background-color: rgb(188, 188, 188);
+  border-radius: 5px;
+  border: 1px solid silver; /* white background, for example */
+}
+.message-container {
+  position: relative;
+  padding: 2px;
+}
+
+/* Style for the header (sender’s name) */
+.message-header {
+  font-size: 0.45rem;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+/* Style for the footer (timestamp) */
+.message-footer {
+  font-size: 0.45rem;
+  color: white;
+  text-align: right;
+  padding-right: 5px;
+  margin-top: 2px;
+}
+
+/* Optionally, ensure the chat bubble has some padding */
+.chat-bubble {
+  padding: 1px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.textarea-wrapper {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    position: relative;
+}
+
+.auto-expand-textarea {
+    width: 100%;
+    min-height: 50px;
+    max-height: 300px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: none;
+    overflow-y: hidden;
+    transition: border-color 0.2s ease;
+}
+
+/* For messages from self, tail on the right */
+.chat-message.self .chat-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #258bf5; /* same as self bubble background */
+  border-bottom: 0;
+  margin-bottom: -10px;
+}
+
+/* For messages from others, tail on the left */
+.chat-message.other .chat-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: rgb(188, 188, 188); /* same as other bubble background */
+  border-bottom: 0;
+  margin-bottom: -10px;
+}

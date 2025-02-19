@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="emails-info(emails, personId)" id="email-list">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body position-relative">
+            <h4 class="card-title">Email Addresses</h4>
+
+            <!-- Button to Add a New Email -->
+            <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-outline-light btn-sm"
+                        th:hx-get="@{/person/{personId}/email/add(personId=${personId})}"
+                        hx-target="#email-form"
+                        hx-swap="innerHTML">
+                    <i class="fa-solid fa-plus"></i> Add Email
+                </button>
+            </div>
+
+            <!-- List of Existing Emails -->
+            <div class="row d-flex flex-wrap" id="email-list-container">
+                <div th:each="email : ${emails}"
+                     th:insert="~{person/email-item :: email-item(email=${email}, personId=${personId})}">
+                </div>
+            </div>
+
+            <!-- Form for Adding/Editing an Email -->
+            <div id="email-form" class="mt-3">
+                <!-- This section will be dynamically replaced by the form when editing or adding -->
+            </div>
+        </div>
+    </div>
+</div>
+</html>

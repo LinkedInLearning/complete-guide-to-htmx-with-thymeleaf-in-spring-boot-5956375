@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Records Management - User Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.2/css/all.min.css}"/>
+</head>
+<body class="gradient-custom" hx-boost="true">
+<header th:insert="~{fragments/header :: userHeader}"></header> <!-- User-specific header -->
+
+<div class="container">
+    <div th:insert="~{fragments/messages :: messages}"></div>
+    <div layout:fragment="content"></div> <!-- Content will be injected here -->
+</div>
+
+<footer th:insert="~{fragments/footer :: userFooter}"></footer>
+
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/htmx.org/2.0.2/dist/htmx.min.js}"></script>
+</body>
+</html>

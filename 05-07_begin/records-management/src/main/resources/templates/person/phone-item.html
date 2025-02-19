@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="phone-item(phone, personId)">
+    <div class="col-md-4" th:id="'phone-id-' + ${phone.phoneId}">
+        <div class="mb-2 border rounded p-2 position-relative">
+            <strong th:text="${phone.type}">Type:</strong>
+            <div th:text="${phone.number}">123-123-1234</div>
+
+            <!-- Edit and Delete links for each email -->
+            <div class="position-absolute top-0 end-0 m-2 ">
+                <a class="text-light me-2 edit-delete-icons" href="#"
+                   hx-select="#phone-form"
+                   hx-swap="innerHTML"
+                   hx-target="#phones-list"
+                   th:hx-get="@{/person/{personId}/phone/edit/{phoneId}(personId=${personId}, phoneId=${phone.phoneId})}"><i class="fa-solid fa-pencil" title="Edit"></i></a>
+                <a href="#" class="text-danger edit-delete-icons"
+                   th:hx-delete="@{/person/{personId}/phone/delete/{phoneId}(personId=${personId}, phoneId=${phone.phoneId})}"
+                   hx-target="closest .col-md-4"
+                   hx-swap="innerHTML"><i class="fa-solid fa-trash" title="Delete"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

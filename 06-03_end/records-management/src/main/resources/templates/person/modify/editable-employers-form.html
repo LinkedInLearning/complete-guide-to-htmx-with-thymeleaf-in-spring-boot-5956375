@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="employer-form(employer, personId)">
+  <form th:action="@{/person/{personId}/employer/save(personId=${personId})}" th:object="${employer}" method="post">
+    <input type="hidden" th:field="*{employerId}" />
+
+    <!-- Business Name -->
+    <div class="mb-3">
+      <label for="businessName" class="form-label">Business Name</label>
+      <input id="businessName" type="text" th:field="*{businessName}" class="form-control" placeholder="Business Name" required>
+    </div>
+
+    <!--    Employment Type -->
+    <div class="mb-3">
+      <label for="employmentType" class="form-label">Employment Type</label>
+      <select id="employmentType" th:field="*{type}" class="form-select">
+        <option value="">Pick Employment Type</option>
+        <option value="FULL_TIME">Full Time</option>
+        <option value="PART_TIME">Part Time</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+
+    <!-- Address Line 1 -->
+    <div class="mb-3">
+      <label for="position" class="form-label">Position</label>
+      <input id="position" type="text" th:field="*{position}" class="form-control" placeholder="Position Title" required>
+    </div>
+
+    <!-- Address Line 1 -->
+    <div class="mb-3">
+      <label for="address1" class="form-label">Address Line 1</label>
+      <input id="address1" type="text" th:field="*{address1}" class="form-control" placeholder="Address Line 1" required>
+    </div>
+
+    <!-- Address Line 2 -->
+    <div class="mb-3">
+      <label for="address2" class="form-label">Address Line 2</label>
+      <input id="address2" type="text" th:field="*{address2}" class="form-control" placeholder="Address Line 2">
+    </div>
+
+    <!-- City -->
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input id="city" type="text" th:field="*{city}" class="form-control" placeholder="City" required>
+    </div>
+
+    <!-- State -->
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <input id="state" type="text" th:field="*{state}" class="form-control" placeholder="State" required>
+    </div>
+
+    <!-- ZIP -->
+    <div class="mb-3">
+      <label for="zip" class="form-label">ZIP Code</label>
+      <input id="zip" type="text" th:field="*{zip}" class="form-control" placeholder="ZIP Code" required>
+    </div>
+
+    <!-- Country -->
+    <div class="mb-3">
+      <label for="country" class="form-label">Country</label>
+      <input id="country" type="text" th:field="*{country}" class="form-control" placeholder="Country" required>
+    </div>
+
+    <!-- Supervisor Name -->
+    <div class="mb-3">
+      <label for="supervisorName" class="form-label">Supervisor Name</label>
+      <input id="supervisorName" type="text" th:field="*{supervisorName}" class="form-control" placeholder="Supervisor Name" required>
+    </div>
+
+    <!-- Supervisor Phone -->
+    <div class="mb-3">
+      <label for="supervisorPhoneNumber" class="form-label">Supervisor Phone</label>
+      <input id="supervisorPhoneNumber" type="text" th:field="*{supervisorPhoneNumber}" class="form-control" placeholder="Supervisor Phone" required>
+    </div>
+
+    <!-- Supervisor Email -->
+    <div class="mb-3">
+      <label for="supervisorEmail" class="form-label">Supervisor Email</label>
+      <input id="supervisorEmail" type="email" th:field="*{supervisorEmail}" class="form-control" placeholder="Supervisor Email" required>
+    </div>
+
+    <!-- Save and Cancel Buttons -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success me-2">Save</button>
+      <button type="button" class="btn btn-secondary"
+              th:hx-get="@{/person/view/{personId}(personId=${personId})}"
+              hx-target="body" hx-swap="outerHTML">Cancel</button>
+    </div>
+  </form>
+</div>
+</html>

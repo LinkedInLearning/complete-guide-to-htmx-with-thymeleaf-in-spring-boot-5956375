@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="employers-info(employers, personId)">
+  <div class="card bg-dark text-white mt-4">
+    <div class="card-body position-relative" id="employer-list">
+      <h4 class="card-title">Employer Information</h4>
+
+      <!-- Button to Add a New Employer -->
+      <div class="position-absolute top-0 end-0 m-2">
+        <button class="btn btn-outline-light btn-sm"
+                th:hx-get="@{/person/{personId}/employer/add(personId=${personId})}"
+                hx-target="#employerModalContent"
+                data-bs-toggle="modal"
+                data-bs-target="#employerModal"
+                hx-trigger="click"
+                hx-swap="innerHTML">
+          <i class="fa-solid fa-plus"></i> Add Employer
+        </button>
+      </div>
+
+      <!-- List of Existing Employers -->
+      <div class="row mt-3">
+        <div class="col-md-4" th:each="employer : ${employers}">
+          <div class="mb-2 border rounded p-2">
+            <strong>Business Name:</strong> <span th:text="${employer.businessName}"></span><br/>
+            <strong>Employment Type:</strong> <span th:text="${employer.type}"></span><br/>
+            <strong>Position:</strong> <span th:text="${employer.position}"></span><br/>
+            <strong>Address:</strong> <span th:text="${employer.address1}"></span> <span th:text="${employer.address2}"></span><br/>
+            <strong>City:</strong> <span th:text="${employer.city}"></span><br/>
+            <strong>State:</strong> <span th:text="${employer.state}"></span><br/>
+            <strong>Country:</strong> <span th:text="${employer.country}"></span><br/>
+            <strong>ZIP:</strong> <span th:text="${employer.zip}"></span><br/>
+            <strong>Supervisor:</strong> <span th:text="${employer.supervisorName}"></span><br/>
+            <strong>Supervisor Phone:</strong> <span th:text="${employer.supervisorPhoneNumber}"></span><br/>
+            <strong>Supervisor Email:</strong> <span th:text="${employer.supervisorEmail}"></span><br/>
+
+            <!-- Edit and Delete buttons for each employer -->
+            <div class="mt-2">
+              <a href="#" class="btn btn-sm btn-outline-light"
+                 th:hx-get="@{/person/{personId}/employer/edit/{employerId}(personId=${personId}, employerId=${employer.employerId})}"
+                 hx-target="#employerModalContent"
+                 data-bs-toggle="modal"
+                 data-bs-target="#employerModal"
+                 hx-trigger="click"
+                 hx-swap="innerHTML">
+                <i class="fa-solid fa-pencil"></i> Edit
+              </a>
+              <a href="#" class="btn btn-sm btn-outline-danger"
+                 th:hx-delete="@{/person/{personId}/employer/delete/{employerId}(personId=${personId}, employerId=${employer.employerId})}"
+                 hx-target="closest .col-md-4"
+                 hx-swap="outerHTML" >
+                <i class="fa-solid fa-trash"></i> Delete
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form for Adding/Editing an Employer -->
+      <div id="employer-form" class="mt-3">
+        <!-- This section will be dynamically replaced by the form when editing or adding -->
+      </div>
+    </div>
+  </div>
+</div>
+</html>

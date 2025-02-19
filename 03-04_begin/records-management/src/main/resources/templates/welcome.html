@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      layout:decorate="~{welcome-layout}">
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Welcome to Records Management</h1>
+        <p>Please sign in or Register for an Account. Account registration is easy and can be accomplished in just minutes.</p>
+        <a th:href="@{/login}" class="btn btn-primary">Login</a>
+        <a th:href="@{/new-user}" class="btn btn-primary">Sign Up</a>
+    </div>
+</div>
+</body>
+</html>

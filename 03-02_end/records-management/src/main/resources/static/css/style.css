@@ -1,0 +1,171 @@
+body {
+    padding-top: 80px; /* Adjust based on the height of your navbar */
+}
+.outer-fade {
+    opacity: 0;
+    animation: outerFadeIn 1.5s ease-in forwards;
+}
+
+@keyframes outerFadeIn { to { opacity: 1; } }
+
+.loading-dashboard-elem {
+    opacity: 0;
+    animation: loadingFadeIn 0.3s ease-in forwards;
+    border: 2px #212529 solid; background: #212529;
+    border-radius: 5px;
+    height: 100px; margin-top: 20px; padding: 10px;
+    color: white; font-size: 24px;
+    visibility: visible;
+}
+
+@keyframes loadingFadeIn { to { opacity: 1; } }
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+}
+
+nav.navbar {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.dropdown-menu {
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* adjust the margin-top value as needed */
+}
+
+.dropdown-menu a {
+    color: #fff !important; /* ensures the links are visible */
+}
+
+.dropdown-menu a:hover {
+    background-color: #6a11cb !important; /* hover background color for the links */
+    color: #fff !important; /* hover text color for the links */
+}
+
+a.text-white-50 {
+    text-decoration: none;
+}
+a.text-white-50:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+.navbar .btn-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar .btn-link:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+li a.nav-link {
+    text-decoration: none;
+    color: #fff;
+}
+li a.nav-link:hover {
+    text-decoration: underline;
+    color: silver !important;
+}
+.welcome-footer {
+    background-color: #343a40 !important; /* Dark gray background */
+    color: #d3d3d3 !important; /* Light gray text */
+    padding: 40px 0 !important; /* Add padding to the footer (top and bottom) */
+    margin-top: 30px; /* Add margin between the main content and the footer */
+    position: absolute;
+    width:100%;
+    bottom: 1px;
+    left: 0;
+}
+.footer {
+    background-color: #343a40 !important; /* Dark gray background */
+    color: #d3d3d3 !important; /* Light gray text */
+    padding: 40px 0 !important; /* Add padding to the footer (top and bottom) */
+        margin-top: 30px; /* Add margin between the main content and the footer */
+
+}
+
+.footer h5 {
+    color: #ffffff; /* White heading text */
+    margin-bottom: 15px;
+}
+
+.footer a {
+    color: #d3d3d3 !important; /* Light gray for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.footer a:hover {
+    color: #ffffff !important; /* White on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.footer p {
+    margin: 0; /* Ensure no margins on paragraphs */
+}
+
+.footer .container {
+    max-width: 1140px; /* Set a max width for the footer container */
+}
+
+.footer .row {
+    margin-bottom: 20px; /* Add spacing between rows */
+}
+
+.footer .text-center {
+    color: #d3d3d3 !important;
+    margin-top: 10px;
+}
+
+.footer .list-unstyled {
+    padding-left: 0;
+}
+
+.footer .list-unstyled li {
+    margin-bottom: 10px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+}
+
+@keyframes fade-out {
+    to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+    from { transform: translateX(90px); }
+}
+
+@keyframes slide-to-left {
+    to { transform: translateX(-90px); }
+}
+
+.slide-it {
+    view-transition-name: slide-it;
+}
+
+::view-transition-old(slide-it) {
+    animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+::view-transition-new(slide-it) {
+    animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+    600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+.bg-custom-dark{
+    background-color: rgb(70 72 75) !important;
+}
+a.edit-delete-icons:hover {
+    color: rgba(150,178,255, 1) !important;
+}

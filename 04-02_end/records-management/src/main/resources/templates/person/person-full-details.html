@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{user-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Person Full Details</title>
+</head>
+<body>
+<div layout:fragment="content" th:fragment="person-full-details">
+    <div class="container mt-5 slide-it">
+        <h2 class="text-white  text-primary">Person Full Details</h2>
+        <div id="alert-message"></div>
+        
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <span th:text="${message}"></span>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <!-- Review Required Section at the top -->
+        <div th:if="${missingDetailsCount > 0}"
+             th:insert="~{person/person-mark-for-review :: mark-for-review-info(missingDetailsList=${missingDetailsList})}"></div>
+
+        <!-- Personal Information Section -->
+        <div id="person-info-content"
+             th:insert="~{person/person-info :: personal-info(person=${person})}"></div>
+
+        <!-- Email Addresses Section -->
+        <div th:insert="~{person/emails-info :: emails-info(emails=${person.emails}, personId=${person.personId})}"></div>
+
+        <!-- Phone Numbers Section -->
+        <div th:insert="~{person/phones-info :: phones-info(phoneNumbers=${person.phoneNumbers})}"></div>
+
+        <!-- Mailing Address Section (To be added when Address entity is available) -->
+        <div th:insert="~{person/person-address-info :: addresses-info(addresses=${person.addresses}, personId=${person.personId})}"></div>
+
+        <!-- Employers Section -->
+        <div th:insert="~{person/employers-info :: employers-info(employers=${person.employers}, personId=${person.personId})}"></div>
+
+    </div>
+</div>
+</body>
+</html>

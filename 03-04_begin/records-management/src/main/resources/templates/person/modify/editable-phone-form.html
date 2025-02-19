@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="phone-form(phone, personId)">
+  <form th:action="@{/person/{personId}/phone/save(personId=${personId})}" th:object="${phone}" method="post">
+    <!-- Hidden input for phoneId to ensure it's passed when editing -->
+    <input type="hidden" th:field="*{phoneId}" />
+
+    <div class="mb-3">
+      <label for="phoneType" class="form-label">Type</label>
+      <select id="phoneType" th:field="*{type}" class="form-select">
+        <option value="WORK">Work</option>
+        <option value="HOME">Home</option>
+        <option value="MOBILE">Mobile</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input id="phone" type="text" th:field="*{number}"   class="form-control" placeholder="123-123-1234" required>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success me-2">Save</button>
+      <button type="button" class="btn btn-secondary"
+              th:hx-get="@{/person/view/{personId}(personId=${personId})}"
+              hx-target="body" hx-swap="outerHTML">Cancel</button>
+    </div>
+  </form>
+</div>
+</html>

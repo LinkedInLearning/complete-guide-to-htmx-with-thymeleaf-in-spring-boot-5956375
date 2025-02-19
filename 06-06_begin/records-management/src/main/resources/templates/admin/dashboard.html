@@ -1,0 +1,24 @@
+<!-- admin-dashboard.html -->
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{admin-layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content">
+    <h2 class="text-white text-uppercase">Admin Dashboard - List of Persons</h2>
+
+    <!-- admin-dashboard.html -->
+
+    <!-- Header row with dark background + white text -->
+    <div class="row p-2 fw-bold bg-dark text-white">
+        <div class="col-2">Person ID</div>
+        <div class="col-3">Full Name</div>
+        <div class="col-3">Email</div>
+        <div class="col-4">Actions</div>
+    </div>
+
+    <!-- Data rows: light background + dark text -->
+    <th:block th:insert="~{admin/person-records :: person-records(personPage=${personPage})}"/>
+</div>
+</html>

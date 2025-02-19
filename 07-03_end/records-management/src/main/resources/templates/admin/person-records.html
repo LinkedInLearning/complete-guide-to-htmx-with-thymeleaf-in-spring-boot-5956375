@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+  <div th:fragment="person-records">
+    <div class="row align-items-center p-2 bg-light text-dark"
+         th:each="person, iStat: ${personPage.content}"
+          th:style="${iStat.odd} ? 'background-color: #EAEAE9 !important;'">
+
+      <div class="col-2" th:text="${person.personId}"></div>
+      <div class="col-3" th:text="${person.firstName} + ' ' + ${person.lastName}"></div>
+      <div class="col-3" th:text="${person.emailDto.emailAddress}"></div>
+      <div class="col-4">
+        <a class="btn btn-outline-primary btn-sm"
+           th:href="@{/person/view/{id}(id=${person.personId})}">
+          View
+        </a>
+        <button class="btn btn-outline-danger btn-sm"
+                th:onclick="'deletePerson(' + ${person.personId} + ')'">
+          Delete
+        </button>
+      </div>
+    </div>
+    <div th:if="${personPage.hasNext()}"
+         th:hx-get="@{/admin/dashboard/page/{p}/size/{s}(p=${personPage.number + 2}, s=${personPage.size})}"
+         hx-trigger="revealed"
+         hx-swap="afterend"
+         hx-indicator="#spinner">
+      <div id="spinner" class="spinner"></div>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="student-details-info" id="student-info-content">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body position-relative">
+            <h4 class="card-title">Student Information</h4>
+
+            <!-- Guardians Section -->
+            <div class="text-white me-3">
+                <!-- Check if there are guardians -->
+                <span th:if="${student.guardians != null && !student.guardians.isEmpty()}">
+            Guardians:
+            <span th:each="guardian, iterStat : ${student.guardians}">
+              <span th:text="${guardian.firstName + ' ' + guardian.lastName}"></span>
+                <!-- Add a comma between guardians, except after the last one -->
+              <span th:if="${!iterStat.last}">, </span>
+            </span>
+          </span>
+                <!-- If no guardians -->
+                <span th:if="${student.guardians == null || student.guardians.isEmpty()}">
+            No Guardians Assigned
+          </span>
+            </div>
+
+            <!-- Edit Button -->
+            <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-outline-light btn-sm"
+                        th:hx-get="@{/student/edit/{studentId}(studentId=${student.studentId})}" hx-target="#student-info-content"
+                        hx-swap="outerHTML">
+                    <i class="fa-solid fa-edit"></i> Edit
+                </button>
+            </div>
+
+            <!-- Student Info Data -->
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>First Name:</strong>
+                        <div th:text="${student.firstName}">John</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Middle Name:</strong>
+                        <div th:text="${student.middleName}">William</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Last Name:</strong>
+                        <div th:text="${student.lastName}">Doe</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Suffix:</strong>
+                        <div th:text="${student.suffix}">Jr.</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Sex:</strong>
+                        <div th:text="${student.sex}">Male</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <strong>Date of Birth:</strong>
+                        <div th:text="${student.dateOfBirth}">Male</div>
+                    </div>
+                </div>
+                <!-- Add more fields as needed -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

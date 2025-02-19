@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!-- templates/dashboard/user-info.html -->
+<div th:fragment="user-info">
+    <div class="card bg-dark text-white mt-4">
+        <div class="card-body">
+            <h4 class="card-title">User Information</h4>
+
+            <!-- Modify Username Link -->
+            <a th:href="@{/user-info/edit-username}" class="text-white-50 me-4">
+                <i class="fa-solid fa-pencil"></i> Modify Username
+            </a>
+
+            <!-- Update Password Link -->
+            <a th:href="@{/user-info/edit-password}" class="text-white-50">
+                <i class="fa-solid fa-pencil"></i> Update Password
+            </a>
+
+            <!-- Removed the inner div with id="user-info" -->
+            <table class="table table-hover table-dark mt-3">
+                <thead>
+                <tr>
+                    <th scope="col">Field</th>
+                    <th scope="col">Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Email</td>
+                    <td th:text="${user.email}">user@example.com</td>
+                </tr>
+                <tr>
+                    <td>Role</td>
+                    <td>
+                            <span th:each="role, iterStat : ${user.roles}">
+                                <span th:text="${role.roleName}">Admin</span>
+                                <span th:text="${!iterStat.last ? ', ' : ''}"></span>
+                            </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Enabled</td>
+                    <td th:text="${user.enabled ? 'Yes' : 'No'}">Yes</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

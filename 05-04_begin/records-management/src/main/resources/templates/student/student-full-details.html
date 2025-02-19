@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{user-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Full Details</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-5 slide-it">
+        <h2 class="text-white text-primary">Student Full Details</h2>
+        <!-- Guardians Section -->
+        <div class="text-white me-3">
+            <!-- Check if there are guardians -->
+            <span th:if="${student.guardians != null && !student.guardians.isEmpty()}">
+               Guardians:
+               <span th:each="guardian, iterStat : ${student.guardians}">
+                   <span th:text="${guardian.firstName + ' ' + guardian.lastName}"></span>
+                    <!-- Add a comma between guardians, except after the last one -->
+                   <span th:if="${!iterStat.last}">, </span>
+               </span>
+            </span>
+            <!-- If no guardians -->
+            <span th:if="${student.guardians == null || student.guardians.isEmpty()}">
+            No Guardians Assigned
+            </span>
+        </div>
+
+        <!-- Review Required Section -->
+        <div id="mark-for-review" >
+            <div th:if="${missingDetailsCount > 0}"
+                 th:replace="~{student/mark-for-review :: mark-for-review-info(missingDetailsList=${missingDetailsList})}">
+            </div>
+        </div>
+
+        <!-- Alert Message Placeholder -->
+        <div id="alert-message"></div>
+
+        <!-- Student Information Section -->
+        <div th:insert="~{student/student-details-info :: student-details-info}"></div>
+
+        <!-- Placeholder for the Edit Form -->
+        <div id="student-edit-form"></div>
+
+        <!-- Prior Schools Section -->
+        <div id="prior-schools-list">
+            <div th:replace="~{priorSchool/prior-schools :: prior-schools(priorSchoolDtoList=${priorSchoolDtoList}, studentId=${student.studentId})}"></div>
+            <!-- Placeholder for Prior School Form -->
+            <div id="prior-school-form"></div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

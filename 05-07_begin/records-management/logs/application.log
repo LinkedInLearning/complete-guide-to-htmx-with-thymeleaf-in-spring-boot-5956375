@@ -1,0 +1,2 @@
+2025-02-08T08:22:00.517+10:00  WARN 72568 --- [RecordsManagement] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m7s64ms).
+2025-02-08T08:53:16.891+10:00  WARN 72568 --- [RecordsManagement] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m16s375ms).

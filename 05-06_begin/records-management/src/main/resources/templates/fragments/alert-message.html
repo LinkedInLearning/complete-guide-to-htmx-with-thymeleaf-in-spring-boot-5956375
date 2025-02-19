@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="alert-message(alertMessage, alertLevel)">
+  <div th:if="${alertMessage}" th:class="'alert alert-' + ${alertLevel}" role="alert">
+    <span th:text="${alertMessage}"></span>
+  </div>
+</div>
+</html>
