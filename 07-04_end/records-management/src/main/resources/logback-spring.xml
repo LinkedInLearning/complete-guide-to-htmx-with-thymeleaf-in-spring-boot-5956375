@@ -1,8 +1,0 @@
-<configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <logger name="com.mdrsolutions.records_management.controller" level="INFO"/>
-    <logger name="org.springframework.web" level="INFO"/>
-    <root level="WARN">
-        <appender-ref ref="CONSOLE"/>
-    </root>
-</configuration>
